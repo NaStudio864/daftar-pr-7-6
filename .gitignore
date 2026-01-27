@@ -1,0 +1,26 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables (WAJIB DIABAIKAN)
+.env
+.env.local
+.env.production
+.env.development
+
+# Vercel
+.vercel/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Build
+dist/
+build/

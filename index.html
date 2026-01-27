@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Daftar PR 7-6 by NaStudio</title>
+<style>
+body { font-family:sans-serif;background:#f5f5f5;padding:10px }
+.card { background:white;padding:15px;border-radius:10px;margin-bottom:10px }
+input,button { width:100%;padding:10px;margin:5px 0 }
+button { background:#2563eb;color:white;border:none;border-radius:8px }
+</style>
+</head>
+<body>
+
+<h3>📘 Daftar PR 7-6</h3>
+
+<div class="card">
+  <input id="user" placeholder="Username">
+  <input id="pin" placeholder="PIN 4 angka" type="password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="card">
+  <h4>🤖 AI Helper</h4>
+  <input id="q" placeholder="Tanya PR / pelajaran">
+  <button onclick="ai()">Tanya</button>
+  <pre id="a"></pre>
+</div>
+
+<div class="card">
+  <h4>📊 Statistik</h4>
+  <button onclick="stats()">Lihat</button>
+  <pre id="s"></pre>
+</div>
+
+<script>
+let token = "";
+
+async function login(){
+  const r = await fetch("/api?action=login",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      username:user.value,
+      pin:pin.value
+    })
+  });
+  const j = await r.json();
+  if(j.token){ token=j.token; alert("Login berhasil"); }
+  else alert(j.error);
+}
+
+async function ai(){
+  const r = await fetch("/api?action=ai",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ prompt:q.value })
+  });
+  a.textContent = (await r.json()).reply;
+}
+
+async function stats(){
+  const r = await fetch("/api?action=stats");
+  s.textContent = JSON.stringify(await r.json(),null,2);
+}
+</script>
+</body>
+</html>

@@ -1,9 +1,14 @@
 {
-  "name": "daftar-pr-7-6",
+  "name": "daftar-pr",
+  "private": true,
   "type": "module",
+  "scripts": {
+    "dev": "node api/index.js"
+  },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
-    "jsonwebtoken": "^9.0.2",
-    "node-fetch": "^3.3.2"
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.0",
+    "@supabase/supabase-js": "^2.39.5"
   }
 }
